@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    container: docker.io/centos:7 # 映射centos7
     steps:
       # 下载源码
       - name: Checkout
