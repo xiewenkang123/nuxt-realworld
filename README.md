@@ -821,30 +821,3 @@ jobs:
 普通的提交不会触发构建，只有`git tag vx.x.x`打版本后，提交才会触发。
 
 在 github 项目的 actions tab 里可以查看构建任务，并且在 release 记录里也可以查阅每个版本的构建产物。
-
-## 踩过的坑
-
-### nuxt-link 嵌套不正确，导致 build 之后页面报错
-
-写完页面后打包 Build,看到报错
-
-```
-Failed to execute 'appendChild' on 'Node': This node type does not support this method.
-```
-
-问题分析：
-
-提示有匹配不上的`VNode`，可能是 html 模板嵌套不正确导致的。debug 了半天，发现`nuxt-link`里面又嵌套了一层`<a>`，导致渲染报错。。。我猜因为`nuxt-link`渲染成 html 后 nuxt 这个提示也太难找问题了。
-
-解决办法：
-
-移除 nuxt-link 内部的 a 标签，调整结构/换成别的元素。
-
-### 腾讯云服务器无法下载 nvm 脚本
-
-又是蛋疼的网络隔离问题，这里选择在能够 fan qiang 的本地机器下载所需的两个文件
-
-- nvm 安装脚本： https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh (随便放置，用 `bash install.sh` 来执行此脚本)
-- nvm 核心脚本：https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/nvm.sh
-
-先执行安装脚本，再把 nvm 核心脚本放置到 `~/.nvm/` 路径下，命名为 `nvm.sh`; 然后按照安装脚本的提示，写入环境变量，即可生效。（所幸 npm 资源可以下载，不然心态爆炸...

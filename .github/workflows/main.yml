@@ -3,7 +3,7 @@ on:
   push:
     # 只有在发版时才触发部署
     tags:
-      - "v*"
+      - 'v*'
 
 jobs:
   build-and-deploy:
@@ -53,8 +53,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd /var/services/realworld-nuxtjs
-            wget https://github.com/bruceeewong/nuxt-realworld/releases/latest/download/release.tgz -O release.tgz
+            cd /usr/share/nginx/nuxt-realworld
+            wget https://github.com/xiewenkang123/nuxt-realworld/releases/latest/download/release.tgz -O release.tgz
             tar zxvf release.tgz
             npm install --production
             pm2 reload pm2.config.json
