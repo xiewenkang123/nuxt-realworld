@@ -2,9 +2,13 @@
  * Nuxt.js 配置文件
  */
 module.exports = {
+  server: {
+    port: 3001, // default: 3000
+    host: '0.0.0.0' // default: localhost
+  },
   router: {
     linkActiveClass: "active",
-    extendRoutes(routes, resolve) {
+    extendRoutes (routes, resolve) {
       // 清除　Nuxt.js　基于　pages　目录默认生成的路由表规则
       routes.splice(0);
 
